@@ -1,2 +1,2 @@
-# Pirata-Malaplata
- Repositorio de Pirata Malaplata modificado
+# Platformer2D
+Juego Platformer 2D
