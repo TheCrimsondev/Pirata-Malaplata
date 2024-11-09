@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://b270rwdaoog0f"]
+[gd_scene load_steps=59 format=3 uid="uid://b270rwdaoog0f"]
 
 [ext_resource type="PackedScene" uid="uid://btewge2lyid0y" path="res://scenes/game/dialogues/components/npc/npc_dialogue_area.tscn" id="1_js67w"]
 [ext_resource type="Script" path="res://scenes/game/characters/npc/npc.gd" id="1_p8b57"]
@@ -21,7 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://b4vh2yxke6lsb" path="res://assets/sprites/treasure_hunters/captain_clown_nose/sprites/dialogue/interrogation/interrogation_out_02.png" id="13_xkqj8"]
 [ext_resource type="Texture2D" uid="uid://bxmi7x0kk6dae" path="res://assets/sprites/pirate_bomb/6_enemy_whale/1_idle/13.png" id="14_pigyd"]
 [ext_resource type="Texture2D" uid="uid://cl548arjg244b" path="res://assets/sprites/pirate_bomb/6_enemy_whale/1_idle/14.png" id="15_o0wxx"]
-[ext_resource type="Resource" uid="uid://bn5myqf1kokjb" path="res://scenes/game/dialogues/dialogues/scene_1/scene_1.dialogue" id="15_tqdhh"]
 [ext_resource type="Texture2D" uid="uid://bx5w14u88sy2u" path="res://assets/sprites/pirate_bomb/6_enemy_whale/1_idle/15.png" id="16_11yg0"]
 [ext_resource type="Texture2D" uid="uid://do5eelk2ne0yc" path="res://assets/sprites/pirate_bomb/6_enemy_whale/1_idle/16.png" id="17_266je"]
 [ext_resource type="Texture2D" uid="uid://bkvqn6nykf5q0" path="res://assets/sprites/pirate_bomb/6_enemy_whale/1_idle/17.png" id="18_hihtm"]
@@ -52,6 +51,7 @@
 [ext_resource type="Texture2D" uid="uid://veugqsvvtcn3" path="res://assets/sprites/pirate_bomb/6_enemy_whale/1_idle/42.png" id="43_23hfh"]
 [ext_resource type="Texture2D" uid="uid://bflghb4hpavoe" path="res://assets/sprites/pirate_bomb/6_enemy_whale/1_idle/43.png" id="44_6uchq"]
 [ext_resource type="Texture2D" uid="uid://c6bioovf60g3l" path="res://assets/sprites/pirate_bomb/6_enemy_whale/1_idle/44.png" id="45_vg8lp"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="52_3ygec"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o0oc8"]
 animations = [{
@@ -219,6 +219,83 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nihc"]
 size = Vector2(53, 38)
 
+[sub_resource type="Resource" id="Resource_m1qcr"]
+script = ExtResource("52_3ygec")
+titles = {
+"dialogue_1": "3",
+"dialogue_2": "12"
+}
+character_names = []
+first_title = "3"
+lines = {
+"1": {
+"next_id": "3",
+"text": "dialogue_1",
+"type": "title"
+},
+"11": {
+"next_id": "12",
+"text": "dialogue_2",
+"type": "title"
+},
+"12": {
+"character": "Selena la Ballena",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "13",
+"text": "¡En otra cueva!",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "¡Bueno nos vemos!",
+"type": "dialogue"
+},
+"13": {
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"3": {
+"character": "Selena la Ballena",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "4",
+"text": "¡Hola avenurero!",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "¡Hola aventurero! ¿qué te trae por estos rumbos?",
+"type": "dialogue"
+},
+"4": {
+"character": "Pirata Malaplata",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "5",
+"text": "¿Y quien eres tú?",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Necesito abrir la puerta. ¿Puedes ayudarme?",
+"type": "dialogue"
+},
+"5": {
+"character": "Selena la Ballena",
+"character_replacements": Array[Dictionary]([]),
+"next_id": "7",
+"text": "Un pez muy mono",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Sí, claro. Sólo tienes que presionar la tecla [A] y la puerta se abrirá..",
+"type": "dialogue"
+},
+"7": {
+"next_id": "8",
+"next_id_after": "8",
+"responses": PackedStringArray("7"),
+"text": "¿Y la princesa?",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Gracias, ¡lo intentaré!",
+"type": "response"
+},
+"8": {
+"is_snippet": false,
+"next_id": "12",
+"type": "goto"
+}
+}
+metadata/dialogue_manager_version = "2.20.0"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_httk0"]
 size = Vector2(91, 11)
 
@@ -251,7 +328,7 @@ shape = SubResource("RectangleShape2D_7nihc")
 disable_mode = 1
 
 [node name="NpcDialogueArea" parent="Area2D" node_paths=PackedStringArray("area", "area_listen", "npc") instance=ExtResource("1_js67w")]
-dialogue_resource = ExtResource("15_tqdhh")
+dialogue_resource = SubResource("Resource_m1qcr")
 area = NodePath("..")
 area_listen = NodePath("../../Area2DListen")
 npc = NodePath("../..")
